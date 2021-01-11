@@ -23,11 +23,12 @@
 		)
 		.replace(/ /g, '-')
 		.toLowerCase();
-	const tld = window.location.href
-		.substring(
-			window.location.href.indexOf('//') + 2,
-			window.location.href.replace('//', '__').indexOf('/'),
-		);
+	// const tld = window.location.href
+	// 	.substring(
+	// 		window.location.href.indexOf('//') + 2,
+	// 		window.location.href.replace('//', '__').indexOf('/'),
+	// 	);
+	const tld = 'ljs.lol';
 	const windowTitle = `${user}@${tld}`;
 	const initModuleName = `${tld.replace(/[.:]/g, '-')}-core`;
 	const { info, warn, error } = strings.ui.components.terminal;
