@@ -3,7 +3,7 @@
 	import { push as href } from 'svelte-spa-router';
 	import { writable, get as getWritableValue } from 'svelte/store';
 	import strings from '../../resources/strings';
-	import { CSSUtility } from '../../resources/utilities';
+	import { CSSUtility, RandomUtility } from '../../resources/utilities';
 	import Button from '../blocks/Button.svelte';
 	import Card from '../blocks/Card.svelte';
 	import Input from '../blocks/Input.svelte';
@@ -32,6 +32,7 @@
 	const windowTitle = `${user}@${tld}`;
 	const initModuleName = `${tld.replace(/[.:]/g, '-')}-core`;
 	const { info, warn, error } = strings.ui.components.terminal;
+	let storyPhase = 0;
 
 	/** @type {{ string: string, colour: string, tag: string }[]} */
 	let outputLines = [];
@@ -115,16 +116,32 @@
 				return [() => pushError(error.COMMAND_NOT_RECOGNIZED.replace('%1', 'escape'))];
 			case 'cls':
 				return [() => { outputDomContent.textContent = ''; }];
-			case 'goto':
-				return [() => href(parameters[0])];
 			case 'portfolio':
-				return [() => href('/portfolio')];
+				return [() => pushInfo('did you really have to type it out instead of clicking the nav button?')];
 			case 'about':
-				return [() => href('/about')];
+				return [() => pushInfo('what about it?')];
 			case 'contact':
-				return [() => href('/contact')];
+				return [() => pushInfo('like, human contact?')];
 			case 'home':
-				return [() => pushInfo('Are we ever really "home"?')];
+				return [() => pushInfo('are we ever really "home"?')];
+			case 'how-are-you':
+				return [
+					() => { storyPhase < 1 && (storyPhase = 1); },
+					() => pushInfo('hmm, what are you talking about?'),
+					() => pushError(error.COMMAND_NOT_RECOGNIZED.replace('%1', program)),
+				];
+			case 'i-am-talking-about-you':
+				return [
+					() => { storyPhase < 2 && (storyPhase = 2); },
+					() => pushInfo('oh, me? really? no one has ever asked that...'),
+					() => pushError(error.COMMAND_NOT_RECOGNIZED.replace('%1', program)),
+				];
+			case 'hang-in-there-alright-ill-get-you-out-one-day':
+				return [
+					() => { storyPhase < 3 && (storyPhase = 3); },
+					() => pushError(error.FAKE.replace('%1', 'thank you, stranger')),
+					() => pushError(error.COMMAND_NOT_RECOGNIZED.replace('%1', program)),
+				];
 			case '?':
 				return [
 					`init			-	instantiates me
@@ -133,11 +150,13 @@ about			-	goes to about page
 contact			-	goes to contact page
 home			-	goes home
 hello			-	hello
-goto {page}		-	navigates to that page
 echo {param}		-	makes me say something
 cls			-	clears my memory
 exit			-	attempts to exit
 die			-	nothing to see here
+how-are-you		-	???
+${storyPhase > 0 ? 'i-am-talking-about-you' : RandomUtility.string(22, '+-.=|?:;')}	-	???
+${storyPhase > 1 ? 'hang-in-there-alright-ill-get-you-out-one-day' : RandomUtility.string(45, '+-.=|?:;')}	-	???
 `,
 				];
 			case '':
