@@ -1,0 +1,49 @@
+@import url('./style/tags.css');
+@import url('./style/fonts.css');
+@import url('./style/themes.css');
+@import url('./style/utilities.css');
+@import url('./style/core/scrollbar.css');
+
+:root {
+	--ease-fast-slow: cubic-bezier(0.22, 1, 0.36, 1);
+	--ease-slow-slow: cubic-bezier(0.77, 0, 0.175, 1);
+	--ease-slow-fast: cubic-bezier(0.5, 0, 0.75, 0);
+
+	/* @compat */
+	--padding: calc(32px + 8%);
+	--padding: min(12%, 140px);
+	--roundness: 28px;
+
+	--font-family-1: 'Space Mono', sans-serif;
+	--font-family-2: 'Space Mono', sans-serif;
+	--font-family-ic: 'Material Icons';
+	--font-variation-thin: 'wght' 100;
+	--font-variation-light-extra: 'wght' 200;
+	--font-variation-light: 'wght' 300;
+	--font-variation-regular: 'wght' 400;
+	--font-variation-medium: 'wght' 500;
+	--font-variation-bold-semi: 'wght' 600;
+	--font-variation-bold: 'wght' 700;
+	--font-variation-bold-extra: 'wght' 800;
+	--font-variation-black: 'wght' 900;
+
+	--box-shadow-drop: 
+		20px 20px 60px rgba(0, 0, 0, 0.5), 
+		-20px -20px 60px rgba(255, 255, 255, 0.5);
+	--box-shadow-drop-inactive:
+		0 0 0 rgba(0, 0, 0, 0.5),
+		0 0 0 rgba(255, 255, 255, 0.5);
+	--box-shadow-inner:
+		inset 5px 5px 15px rgba(0, 0, 0, 0.3), 
+		inset -5px -5px 15px rgba(255, 255, 255, 0.3);
+	--box-shadow-inner-inactive:
+		inset 0 0 0 rgba(0, 0, 0, 0.3), 
+		inset 0 0 0 rgba(255, 255, 255, 0.3);
+
+	--transition-background-colour: background-color 0.3s var(--ease-fast-slow);
+}
+
+body {
+	height: 100vh;
+	margin: 0;
+}

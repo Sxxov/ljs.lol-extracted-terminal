@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+        "**/*.map": true,
+        "src/**/*.js": true,
+    },
+    "files.eol": "\r\n"
+}

@@ -1,0 +1,8 @@
+:root.theme\:dark {
+	--colour-accent-primary: #272829;
+	--colour-accent-secondary: #555;
+	--colour-text-primary: #ebf0f7;
+	--colour-text-secondary: #e1e6ed;
+	--colour-background-primary: #000;
+	--colour-background-secondary: #161718;
+}

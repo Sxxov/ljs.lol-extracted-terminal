@@ -1,0 +1,15 @@
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+::-webkit-scrollbar-thumb {
+	background: var(--colour-accent-primary);
+
+	transition: all 0.3s var(--ease-fast-slow);
+}
+::-webkit-scrollbar-thumb:hover{
+	background: var(--colour-accent-secondary);
+}
+::-webkit-scrollbar-track{
+	background: var(--colour-text-primary);
+}
